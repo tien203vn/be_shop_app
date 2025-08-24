@@ -1,0 +1,46 @@
+server:
+  port: 8082
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/shopapp?useSSL=false
+    #url: jdbc:mysql://localhost:3306/ShopApp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    #password:
+    password: 123456
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    default-locale: en
+api:
+  prefix: api/v1
+jwt:
+  expiration: 2592000 #30 days = 30 * 24 * 60 * 60
+  secretKey: GXnigQfkBnsEwRFDfpAGcY+cfO3YRhH54a3pH2cCo/Q=
+  expiration-refresh-token: 5184000
+
+payment:
+  vnPay:
+    url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+    tmnCode: M45RG60Q
+    secretKey: NQJNUUEZ1EN8D5M5PWZCTLONNAQ6F6GO
+    returnUrl: http://localhost:4200/
+    version: 2.1.0
+    command: pay
+    orderType: other
+
+web:
+  resources:
+    static-locations: file:./uploads/
