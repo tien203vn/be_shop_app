@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import lombok.extern.slf4j.XSlf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.util.Pair;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +25,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-
+@Slf4j
 public class JwtTokenFilter extends OncePerRequestFilter{
     @Value("${api.prefix}")
     private String apiPrefix;
@@ -62,6 +64,8 @@ public class JwtTokenFilter extends OncePerRequestFilter{
             }
             filterChain.doFilter(request, response); //enable bypass
         }catch (Exception e) {
+            log.error("Cannot set user authentication: {}", e.getMessage());
+            e.printStackTrace();
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
         }
 
