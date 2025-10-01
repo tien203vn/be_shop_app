@@ -48,7 +48,9 @@ public class ProductService implements IProductService {
         Product newProduct = Product.builder()
                 .name(productDTO.getName())
                 .price(productDTO.getPrice())
+                .importPrice(productDTO.getImportPrice())
                 .thumbnail(productDTO.getThumbnail())
+                .stock(productDTO.getStock().intValue())
                 .description(productDTO.getDescription())
                 .category(existingCategory)
                 .build();

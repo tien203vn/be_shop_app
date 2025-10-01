@@ -5,6 +5,9 @@ import com.project.shopapp.exceptions.DataNotFoundException;
 import com.project.shopapp.models.Category;
 import com.project.shopapp.repositories.CategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +36,10 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+
+        Sort sort = Sort.by("id").descending();
+        Pageable sortedPageable = PageRequest.of(0, 1000, sort);
+        return categoryRepository.findAll(sortedPageable).getContent();
     }
 
     @Override
