@@ -109,6 +109,7 @@ public class ProductController {
                             .name(existingProduct.getName())
                             .price(existingProduct.getPrice())
                             .description(existingProduct.getDescription())
+                            .stock(Long.valueOf(existingProduct.getStock()))
                             .categoryId(existingProduct.getCategory().getId())
                             .thumbnail(filename)
                             .build()
