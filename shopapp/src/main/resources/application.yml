@@ -40,6 +40,12 @@ payment:
     version: 2.1.0
     command: pay
     orderType: other
+  payOS:
+    clientId: 6167caf4-6ff1-4884-9178-63f24b779d33
+    apiKey: 5502f3a7-de3e-4a38-bf4d-710acfda3f34
+    checksumKey: 867da3167f26ef9bce982f5fbf06ea28fd8f00d5d69d750e7baa24fb4e326e21
+    returnUrl: http://localhost:4200/payment/success
+    cancelUrl: http://localhost:4200/payment/cancel
 
 web:
   resources:
