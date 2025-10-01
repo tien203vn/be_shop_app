@@ -70,6 +70,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                             .requestMatchers(GET, String.format("%s/product_images/**", apiPrefix)).permitAll()
                             .requestMatchers(GET, String.format("%s/articles/**", apiPrefix)).permitAll()
                             .requestMatchers(PUT, String.format("%s/articles/**", apiPrefix)).hasAnyRole(Role.ADMIN)
+                            .requestMatchers(POST, String.format("%s/articles/**", apiPrefix)).hasAnyRole(Role.ADMIN)
                             .requestMatchers(POST, String.format("%s/orders/**", apiPrefix)).hasAnyRole(Role.USER, Role.ADMIN)
                             .requestMatchers(GET, String.format("%s/orders/**", apiPrefix)).permitAll()
                             .requestMatchers(GET, String.format("%s/orders/get-orders-by-keyword", apiPrefix)).hasAnyRole(Role.ADMIN)
@@ -82,6 +83,15 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                             .requestMatchers(GET, String.format("%s/coupons/**", apiPrefix)).permitAll()
                             .requestMatchers(GET, String.format("%s/report/excel", apiPrefix)).permitAll()
                             .requestMatchers(GET, String.format("%s/payment/payment_infor", apiPrefix)).permitAll()
+                            
+                            // PayOS endpoints
+                            .requestMatchers(POST, String.format("%s/payments/payos/create-payment-link", apiPrefix)).permitAll()
+                            .requestMatchers(POST, String.format("%s/payments/payos/create-embedded-payment-link", apiPrefix)).permitAll()
+                            .requestMatchers(GET, String.format("%s/payments/payos/payment-info/**", apiPrefix)).permitAll()
+                            .requestMatchers(PUT, String.format("%s/payments/payos/cancel/**", apiPrefix)).permitAll()
+                            .requestMatchers(POST, String.format("%s/payments/payos/webhook", apiPrefix)).permitAll()
+                            .requestMatchers(POST, String.format("%s/payments/payos/confirm-webhook", apiPrefix)).permitAll()
+                            
                             .anyRequest().authenticated();
                 })
                 .csrf(AbstractHttpConfigurer::disable);
