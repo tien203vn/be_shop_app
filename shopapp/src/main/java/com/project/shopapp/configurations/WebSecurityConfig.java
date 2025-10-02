@@ -83,7 +83,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                             .requestMatchers(GET, String.format("%s/coupons/**", apiPrefix)).permitAll()
                             .requestMatchers(GET, String.format("%s/report/excel", apiPrefix)).permitAll()
                             .requestMatchers(GET, String.format("%s/payment/payment_infor", apiPrefix)).permitAll()
-                            
+                            .requestMatchers(String.format("%s/chatbot/**", apiPrefix)).permitAll()
                             // PayOS endpoints
                             .requestMatchers(POST, String.format("%s/payments/payos/create-payment-link", apiPrefix)).permitAll()
                             .requestMatchers(POST, String.format("%s/payments/payos/create-embedded-payment-link", apiPrefix)).permitAll()

@@ -50,3 +50,6 @@ payment:
 web:
   resources:
     static-locations: file:./uploads/
+gemini:
+  api:
+    key: AIzaSyCEi7mMUBME_ZXr9jKDHL5PgS08629mj8w
